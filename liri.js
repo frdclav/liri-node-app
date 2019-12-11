@@ -8,8 +8,8 @@ var fs = require('fs');
 // console.log(keys.spotify)
 var spotify = new Spotify(keys.spotify);
 
-var liri_request = process.argv[2];
-var liri_search_term = process.argv[3];
+// var liri_request = process.argv[2];
+// var liri_search_term = process.argv[3];
 
 // switch
 var main = function (liri_request, liri_search_term) {
@@ -51,7 +51,7 @@ var main = function (liri_request, liri_search_term) {
                     }).then(function (response) {
                         console.log("More CHUNES fo ya head-top, :", liri_search_term)
                         const res = response.tracks.items[0];
-                        // console.log(res)
+                        // console.log(response)
                         let artist = []
                         res.artists.forEach(element => {
                             artist.push(element.name)
@@ -109,13 +109,15 @@ var main = function (liri_request, liri_search_term) {
         case "do-what-it-says":
             fs.readFile('random.txt', 'utf8', (err, data) => {
                 if (err) { return console.log(err) }
-                var firstSplit = data.split('\r\n')
+                var firstSplit = data.split('\n') //some reason this worked differently on mac and windows
                 var secSplit = []
                 firstSplit.forEach(element => {
                     secSplit.push(element.replace(/"/g, '').split(','))
                 })
+                // console.log(data)
+                // console.log(firstSplit)
                 secSplit.forEach(element => {
-                    // console.log(element[0])
+                    // console.log(element[0],element[1])
                     main(element[0], element[1])
                 });
             })
@@ -129,4 +131,4 @@ var main = function (liri_request, liri_search_term) {
             break;
     }
 }
-main(liri_request, liri_search_term)
+main(process.argv[2],process.argv[3])
