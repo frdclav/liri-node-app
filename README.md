@@ -5,7 +5,8 @@
 The app runs mainly from liri.js and uses axios, node-spotify-api, dotenv, fs packages.
 3. Give start-to-finish instructions on how to run the app
 The app runs via the command line. First you need to make a .env file with your spotify keys:
-```# Spotify API keys
+```
+# Spotify API keys
 
 SPOTIFY_ID=your-spotify-id
 SPOTIFY_SECRET=your-spotify-secret
